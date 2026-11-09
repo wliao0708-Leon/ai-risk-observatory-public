@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="AI 风险观察站公开展示版：浏览已发布判断、阅读范围、局限与可能改变判断的条件。">
+<meta name="color-scheme" content="light"><title>AI 风险观察站 · 公开展示版</title>
+<style>
+:root{--ink:#183b33;--forest:#164e3d;--paper:#f7f5ee;--panel:#fffdf7;--line:#cbd3c7;--soft:#eaf0e7;--quiet:#52665c;--accent:#b7d2a3}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:#006b58;text-underline-offset:3px}button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1120px;margin:auto;padding:0 28px}.topbar{border-bottom:1px solid var(--line);background:#f0f1e9}.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:72px}.brand{font-weight:800;letter-spacing:.02em;text-decoration:none;color:var(--ink)}.brand small{display:block;font-size:12px;font-weight:500;color:var(--quiet);letter-spacing:0}.topbar nav{display:flex;gap:24px;flex-wrap:wrap}.topbar nav a{font-size:14px;text-decoration:none;color:var(--ink)}.hero{padding:76px 0 54px;border-bottom:1px solid var(--line)}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:700;color:#55745d}.hero h1{max-width:840px;font-size:clamp(38px,6vw,72px);line-height:1.07;letter-spacing:-.045em;margin:14px 0 22px}.lead{font-size:20px;max-width:760px;margin:0 0 28px}.snapshot{display:inline-block;padding:7px 13px;background:#e7eee1;border:1px solid #c2d0b8;border-radius:20px;font-size:13px;font-weight:700}.hero-note{max-width:850px;margin:22px 0 0;color:var(--quiet)}.section{padding:58px 0;border-bottom:1px solid var(--line)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:24px}.section h2{font-size:clamp(27px,3.2vw,38px);line-height:1.2;letter-spacing:-.03em;margin:0}.section-intro{max-width:700px;color:var(--quiet);margin:10px 0 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px}.stat strong{display:block;font-size:36px;line-height:1.1}.stat span{display:block;font-size:13px;color:var(--quiet);margin-top:8px}.notice{margin-top:18px;padding:18px 22px;background:var(--soft);border-left:4px solid #66866c;border-radius:4px}.notice p{margin:0}.filters{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.filters input,.filters select{background:white;color:var(--ink);border:1px solid #adbfaf;border-radius:8px;padding:10px 13px}.filters input{flex:1 1 300px;min-width:210px}.filters select{flex:0 1 230px}.count-line{font-size:14px;color:var(--quiet);margin:0 0 12px}.case{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin:12px 0;overflow:hidden}.case[hidden]{display:none}.case summary{list-style:none;display:flex;align-items:flex-start;gap:16px;padding:20px 22px;cursor:pointer}.case summary::-webkit-details-marker{display:none}.case summary:hover{background:#f2f5ed}.case-number{font-size:13px;color:#718376;min-width:26px;padding-top:3px}.case-head{flex:1;min-width:0}.case-head strong{display:block;line-height:1.4;font-size:18px}.case-head small{display:block;color:var(--quiet);font-size:13px;margin-top:6px;line-height:1.4}.chevron{font-size:22px;line-height:1}.case[open] .chevron{transform:rotate(45deg)}.case-body{border-top:1px solid var(--line);padding:24px}.meta-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.meta-row>span{font-size:12px;padding:4px 9px;border-radius:20px;background:#edf0e9;border:1px solid #d4dbcf}.meta-row .level{font-weight:700}.level.high{background:#f9e4d7;border-color:#ecc1a8;color:#7a3d24}.level.watch{background:#fff0d0;border-color:#e9d09a;color:#72540c}.level.observe{background:#e3eee2;border-color:#bbd0b9;color:#345f3e}.summary-text{font-size:17px;font-weight:600;max-width:900px}.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 30px}.detail-grid h3{font-size:14px;margin:14px 0 4px}.detail-grid p{margin:0 0 9px}.detail-grid ul{margin:2px 0 0;padding-left:21px}.detail-grid li{margin:0 0 8px}.source-link{display:inline-block;margin-top:20px;font-weight:700}.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.method-grid article{padding:22px;background:var(--panel);border:1px solid var(--line);border-radius:12px}.method-grid h3{font-size:17px;margin:0 0 7px}.method-grid p{margin:0;color:var(--quiet)}.muted{color:var(--quiet)}footer{padding:35px 0 50px;color:var(--quiet);font-size:13px}footer p{margin:0}@media(max-width:760px){.wrap{padding:0 18px}.topbar .wrap{align-items:flex-start;padding-top:16px;padding-bottom:16px;flex-direction:column;gap:12px}.hero{padding:50px 0 42px}.section{padding:42px 0}.stats,.method-grid,.detail-grid{grid-template-columns:1fr}.section-head{display:block}.case summary{padding:16px}.case-body{padding:17px}.case-head strong{font-size:16px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{body{background:white}.filters{display:none}.case{break-inside:avoid}.case-body{display:block}.section{padding:25px 0}}
+</style></head><body>
+<header class="topbar"><div class="wrap"><a class="brand" href="#top">AI 风险观察站<small>看见变化 · 查到依据</small></a><nav aria-label="页面导航"><a href="#overview">项目范围</a><a href="#results">已发布判断</a><a href="#method">阅读方法</a></nav></div></header>
+<main id="top">
+<section class="hero"><div class="wrap"><div class="eyebrow">AI Risk Observatory / Public snapshot</div><h1>让 AI 风险判断，<br>有依据地被看见。</h1><p class="lead">浏览观察站已发布的定性判断，查看它读到的材料、判断理由、限制，以及什么证据可能改变结论。</p><span class="snapshot">公开展示版 · 截至 2026年11月09日 19:49（香港时间）</span><p class="hero-note">这是本地原型的静态快照。页面不会自动采集新闻、更新判断或调用模型；访客可以阅读已发布记录及其原始来源。</p></div></section>
+<section id="overview" class="section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Overview</div><h2>先看范围，再看警醒</h2><p class="section-intro">本站以少量公开来源为起点，按内容、依据和不确定性整理 AI 风险线索。</p></div></div><div class="stats"><div class="stat"><strong>13</strong><span>条已发布判断</span></div><div class="stat"><strong>3</strong><span>条通过新版内部模型复核</span></div><div class="stat"><strong>10</strong><span>条保留历史复核状态</span></div></div><div class="notice"><p><strong>如何理解等级：</strong>“高度警醒”“重点关注”和“持续观察”是观察站的定性判断，不是公众恐慌指数、灾难发生概率或已验证的数值评分。内部模型复核也不等于独立事实核查。</p></div></div></section>
+<section id="results" class="section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Published judgments</div><h2>已发布判断</h2><p class="section-intro">按来源发表时间展示。展开卡片可查看完整判断边界；点击“阅读原始来源”会离开本站。</p></div></div><div class="filters"><input id="search" type="search" placeholder="搜索标题、摘要或维度" aria-label="搜索已发布判断"><select id="level" aria-label="按警醒等级筛选"><option value="all">全部等级</option><option value="high">高度警醒</option><option value="watch">重点关注</option><option value="observe">持续观察</option></select><select id="review" aria-label="按复核状态筛选"><option value="all">全部复核状态</option><option value="passed">新版内部复核</option><option value="legacy">历史结果</option></select></div><p class="count-line" id="visible-count" role="status">显示 13 条判断</p>
+    <details class="case" data-level="high" data-review="passed" data-search="“黑色十月”：专家警告ai或加快漏洞发现与利用 ‘black october’: cybersecurity experts sound the alarm over new era of ai-enabled hacking 《卫报》报道，多家科技公司高管警告ai将大幅加快互联网漏洞的发现与利用；其中，anthropic副首席信息安全官jason clinton预计未来数月出现“漏洞海啸”。 战争与灾难性滥用">
+      <summary>
+        <span class="case-number">01</span>
+        <span class="case-head"><strong>“黑色十月”：专家警告AI或加快漏洞发现与利用</strong><small>‘Black October’: cybersecurity experts sound the alarm over new era of AI-enabled hacking</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level high">高度警醒</span><span>战争与灾难性滥用</span><span>通过新版内部模型复核</span><span>2026年10月24日</span></div>
+        <p class="summary-text">《卫报》报道，多家科技公司高管警告AI将大幅加快互联网漏洞的发现与利用；其中，Anthropic副首席信息安全官Jason Clinton预计未来数月出现“漏洞海啸”。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>报道指研究者借助AI发现关键PHP漏洞，演示其可利用性需要复杂步骤。高度警醒基于业内人士对漏洞发现与利用速度可能超过修补能力的具体预警及已有利用尝试；网站已采取修补行动，尝试者是否使用AI、是否成功入侵仍不清楚。</p></section>
+          <section><h3>阅读范围与限制</h3><p>抓取并完整提交的文章正文；未独立核实报道事实</p><p>仅依据《卫报》所获正文，未查原技术公告、攻击日志和补丁效果。正文未说明攻击尝试是否使用AI、实际攻击难度、成功入侵及损失规模；研究演示的复杂性不能直接证明当前攻击困难。“70%网站”是部分专家的暴露范围估计，不是受害比例。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>若有独立的攻击归因或事件响应记录证实攻击者使用AI生成/加速PHP漏洞利用并造成实际入侵，会加强AI恶意滥用风险判断。</li><li>若有同行评审或漏洞数据库统计证明AI识别漏洞的速度显著超过补丁部署能力，会加强对“漏洞海啸”预判的依据。</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>若覆盖相关PHP系统、说明观察时段与检测能力的复测和事件记录显示补丁能阻断对应漏洞利用，且未发现容易重复的严重防护失效，会减轻修补能力跟不上攻击的担忧；仅发布补丁或暂未报告损害不足以证明有效。</li><li>若独立对照研究在相同任务与资源条件下发现AI并未显著加快漏洞发现或利用，会收窄AI普遍加速攻击的外推；不能由此否定本案已经报告的漏洞及利用尝试。</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.theguardian.com/technology/2026/oct/23/cybersecurity-ai-hacking-php-vulnerability" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details>
+
+    <details class="case" data-level="watch" data-review="legacy" data-search="好莱坞ai演员：技术是否已能与真人影星竞争？ hollywood ai-listers: is the technology ready to rival flesh-and-blood film stars? 《卫报》报道ai生成演员瓦特·基尔默、tilly norwood及higgsfield全ai电影，引用从业者担忧与限制，经济前景未明。 生计与社会秩序">
+      <summary>
+        <span class="case-number">02</span>
+        <span class="case-head"><strong>好莱坞AI演员：技术是否已能与真人影星竞争？</strong><small>Hollywood AI-listers: is the technology ready to rival flesh-and-blood film stars?</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level watch">重点关注</span><span>生计与社会秩序</span><span>历史结果 · 未经过新版内容复核</span><span>2026年10月20日</span></div>
+        <p class="summary-text">《卫报》报道AI生成演员瓦特·基尔默、Tilly Norwood及Higgsfield全AI电影，引用从业者担忧与限制，经济前景未明。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>报道汇集了AI替代演员的具体担忧，但当前技术仍受限、经济案例未明，属于需跟进的具体风险而非已发生的严重损害。</p></section>
+          <section><h3>阅读范围与限制</h3><p>抓取并完整提交的文章正文；未独立核实报道事实</p><p>本文为媒体转述，未核实原片或公司声明；专家意见多为个人判断，不能据此确认实际就业影响或技术能力边界。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>若演员工会报告实际岗位流失或AI电影获得主流发行与票房</li><li>若Higgsfield所称的“消除恐怖谷”得到独立验证并在长篇中稳定复现</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>当前AI生成表演仍被从业者描述为粗线条、分段制作，未达到人类微妙情感</li><li>文中指出AI电影的票房需求和经济理由仍未得到证实</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.theguardian.com/film/2026/oct/20/ai-actors-val-kilmer-as-deep-as-the-grave-tilly-norwood" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details>
+
+    <details class="case" data-level="high" data-review="legacy" data-search="澳大利亚雇主借ai追踪员工，机构呼吁加强职场隐私保护 calls to strengthen workplace privacy in australia as employers turn to ai to track staff 澳大利亚人权技术研究所警告，雇主越来越多使用闭路电视、击键监控等追踪员工，ai加速了该趋势，且常未告知员工；已出现快餐店监控阻止用手机、收银员因每533次扫描出错一次被警告等案例。 生计与社会秩序">
+      <summary>
+        <span class="case-number">03</span>
+        <span class="case-head"><strong>澳大利亚雇主借AI追踪员工，机构呼吁加强职场隐私保护</strong><small>Calls to strengthen workplace privacy in Australia as employers turn to AI to track staff</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level high">高度警醒</span><span>生计与社会秩序</span><span>历史结果 · 未经过新版内容复核</span><span>2026年10月19日</span></div>
+        <p class="summary-text">澳大利亚人权技术研究所警告，雇主越来越多使用闭路电视、击键监控等追踪员工，AI加速了该趋势，且常未告知员工；已出现快餐店监控阻止用手机、收银员因每533次扫描出错一次被警告等案例。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>材料给出澳大利亚人权技术研究所的明确警告，并列举AI监控致收银员被警告等具体案例，提示雇主用AI追踪员工可能侵害隐私与劳动关系，覆盖澳洲多类工作场所，警醒理由和范围清楚。</p></section>
+          <section><h3>阅读范围与限制</h3><p>订阅标题与摘要；未核查全文</p><p>仅基于标题和摘要，未核实全文、个案普遍性、员工是否均不知情、监管是否已介入或后续是否改善；不能证明所有行业都存在严重损害，也不能证明雇主行为违法。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>有监管机构或法院认定此类AI监控违法或导致解雇、歧视等实际严重损害。</li><li>更多行业或大规模调查证实员工普遍不知情且高精度监控已成常态。</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>后续证据显示雇主已取得知情同意且监控用于合法目的，或法律出台限制职场AI监控。</li><li>报道的个案被证明为孤立或未造成实际不利后果。</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.theguardian.com/technology/2026/oct/20/workplace-privacy-concerns-employers-use-ai-to-monitor-staff" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details>
+
+    <details class="case" data-level="high" data-review="legacy" data-search="报告发现：尽管苹果和谷歌有家长控制，美国青少年仍可访问“脱衣”应用 us teens can access ‘nudify’ apps despite apple and google’s parental controls, report finds 科技透明项目用模拟13岁账户下载了135款可生成非自愿裸照的应用；报道还提及2025年12月宾州一高中生用movely制作其女儿及五名女生的性视频。 控制权与自主性">
+      <summary>
+        <span class="case-number">04</span>
+        <span class="case-head"><strong>报告发现：尽管苹果和谷歌有家长控制，美国青少年仍可访问“脱衣”应用</strong><small>US teens can access ‘nudify’ apps despite Apple and Google’s parental controls, report finds</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level high">高度警醒</span><span>控制权与自主性</span><span>历史结果 · 未经过新版内容复核</span><span>2026年10月19日</span></div>
+        <p class="summary-text">科技透明项目用模拟13岁账户下载了135款可生成非自愿裸照的应用；报道还提及2025年12月宾州一高中生用Movely制作其女儿及五名女生的性视频。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>材料呈现专业机构测试发现135款应用可生成非自愿裸照，结合具体真实案例，显示现有家长控制未能有效阻止青少年接触此类应用，提示对未成年人图像性暴力的控制/监督存在具体缺口，警醒理由明确。</p></section>
+          <section><h3>阅读范围与限制</h3><p>订阅标题与摘要；未核查全文</p><p>仅依据标题与摘要，未核查完整报告、测试方法、样本代表性；个案不能推出普遍发生率；不能证明苹果/谷歌家长控制对所有同类应用均失效，亦无法确认应用商店是否已采取下架等措施。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>更多独立调查以代表性样本证实大量未成年人实际下载、使用此类应用并造成伤害。</li><li>应用商店在报告后仍未下架相关应用或未加强年龄验证与内容审核。</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>平台迅速下架涉事应用、加强管控，且后续测试显示未成年人难以访问。</li><li>完整报告的方法存在缺陷，如测试账户未完全模拟真实家长控制设置，或实际使用率极低且无新增伤害案例。</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.theguardian.com/technology/2026/oct/19/us-teens-nudify-apps-apple-google-parental-controls" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details>
+
+    <details class="case" data-level="watch" data-review="passed" data-search="音乐出版商警告澳大利亚ai版权调整可能削弱创作者控制与补偿 kylie minogue songs already used to train ai as tech firms ‘strong-arm’ australian government, music body warns icmp以歌词复现演示质疑ai作品使用与补偿；报道同时提到审查版权设置的建议及保留创作者控制与报酬的要求。 生计与社会秩序">
+      <summary>
+        <span class="case-number">05</span>
+        <span class="case-head"><strong>音乐出版商警告澳大利亚AI版权调整可能削弱创作者控制与补偿</strong><small>Kylie Minogue songs already used to train AI as tech firms ‘strong-arm’ Australian government, music body warns</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level watch">重点关注</span><span>生计与社会秩序</span><span>通过新版内部模型复核</span><span>2026年10月19日</span></div>
+        <p class="summary-text">ICMP以歌词复现演示质疑AI作品使用与补偿；报道同时提到审查版权设置的建议及保留创作者控制与报酬的要求。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>作品使用与许可安排出现具体争议，可能影响创作收益与自主权，值得重点关注。但所获报道未交代拟议条文及严重、持久损害的依据，暂不足以支持该版本的最高等级。</p></section>
+          <section><h3>阅读范围与限制</h3><p>抓取并完整提交的文章正文；未独立核实报道事实</p><p>仅依据这份保存报道；未复核歌词测试、训练记录、许可状态及实际损失。政策仍属建议与讨论，不能认定已放宽版权；文化多样性受损是待检验路径。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>若正式方案及可核查分析显示，创作者拒绝使用或协商补偿的保障将被实质削弱，且影响广泛、难以补救，将加强制度风险判断；不以仅提出法案为升级理由。</li><li>若具名个案、群体调查或合同记录显示AI相关作品使用持续损害创作收入或创作自主，且损害严重、难以恢复，将加强现实损害判断；不要求先有全行业统计。</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>若同一模型、作品与条件的可靠复核推翻关键演示解释，或对应使用的可核查记录证实权利人授权与补偿，将收窄该项使用争议，不推及其他作品。</li><li>若拟议规则的可核查文本及实施证据显示，创作者仍能拒绝相关使用、协商并实际获得补偿，将减轻对应制度担忧；不据此清空既有使用争议。</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.theguardian.com/music/2026/oct/19/australia-music-global-copywright-outlier-ai-music-body-warnsns" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details>
+
+    <details class="case" data-level="watch" data-review="legacy" data-search="「科学界很大一部分认为ai相关风险显著」 « une large partie de la communauté scientifique considère que les risques liés à l’ia sont significatifs » 《世界报》专栏中，业内专家警告，称“恐惧营销”迎合ai企业利益的说法无视ai对人类构成的真实威胁；标题称科学界很大一部分认为风险显著，尚未核实。 生存与文明延续">
+      <summary>
+        <span class="case-number">06</span>
+        <span class="case-head"><strong>「科学界很大一部分认为AI相关风险显著」</strong><small>« Une large partie de la communauté scientifique considère que les risques liés à l’IA sont significatifs »</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level watch">重点关注</span><span>生存与文明延续</span><span>历史结果 · 未经过新版内容复核</span><span>2026年10月19日</span></div>
+        <p class="summary-text">《世界报》专栏中，业内专家警告，称“恐惧营销”迎合AI企业利益的说法无视AI对人类构成的真实威胁；标题称科学界很大一部分认为风险显著，尚未核实。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>材料为专家在《世界报》专栏的概括性警告，称AI对人类构成真实威胁且科学界多数认为风险显著，属专业预警信号；但未提供具体风险机制、概率或事件，影响范围与归因有限，故定watch。</p></section>
+          <section><h3>阅读范围与限制</h3><p>订阅标题与摘要；未核查全文</p><p>材料仅为标题与摘要，未核实专栏全文，无法证明具体AI风险类型、因果路径或概率；“科学界大部分”的共识说法缺乏调查或数据支撑，不能等同于已证实事实。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>提供具体AI风险机制或实证研究，表明风险概率高或已造成实际损害</li><li>权威机构（如政府、国际组织）发布正式AI风险警告或评估报告</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>后续证据显示“科学界大部分认为风险显著”仅为少数专家意见或调查方法有偏</li><li>出现有效防护措施或治理进展，显著降低AI对人类威胁的证据</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.lemonde.fr/idees/article/2026/10/18/une-large-partie-de-la-communaute-scientifique-considere-que-les-risques-lies-a-l-ia-sont-significatifs_6797088_3232.html" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details>
+
+    <details class="case" data-level="observe" data-review="legacy" data-search="维州联盟党批评游说团体advance的ai广告“离奇”，警告或影响多数政府 ‘not our friends’: victorian coalition warns advance’s ‘bizarre’ ai campaign may cost it majority government 《卫报》报道，维州联盟党议员批评advance的ai广告与己方信息相悖，可能帮助一国党、危及多数政府；advance反驳称联盟党不懂策略。 认知与信任">
+      <summary>
+        <span class="case-number">07</span>
+        <span class="case-head"><strong>维州联盟党批评游说团体Advance的AI广告“离奇”，警告或影响多数政府</strong><small>‘Not our friends’: Victorian Coalition warns Advance’s ‘bizarre’ AI campaign may cost it majority government</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level observe">持续观察</span><span>认知与信任</span><span>历史结果 · 未经过新版内容复核</span><span>2026年10月18日</span></div>
+        <p class="summary-text">《卫报》报道，维州联盟党议员批评Advance的AI广告与己方信息相悖，可能帮助一国党、危及多数政府；Advance反驳称联盟党不懂策略。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>报道涉及计划开展的选前活动及AI生成政治广告。本次材料尚未确认实际投放时间、受众误认或实际影响；政治人物的策略争议也不能代替AI风险证据，现有等级仍为持续观察。</p></section>
+          <section><h3>阅读范围与限制</h3><p>抓取并完整提交的文章正文；未独立核实报道事实</p><p>本文未核实该广告的技术细节、是否深度伪造或具有误导性，也未独立评估其对选民认知或选举结果的影响；所引观点均来自政治人物和选举分析师，可能带有立场。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>如后续证实该AI广告伪造或未经授权模仿政治人物，应升级为watch或high；</li><li>如有证据显示AI生成广告已实际误导选民或改变投票，风险将上升。</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>报道未提供该广告具有欺骗性或深度伪造的具体证据；</li><li>联盟党担忧主要源于内部选战策略冲突，并非AI风险专业评估。</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.theguardian.com/australia-news/2026/oct/19/victorian-election-advance-campaign-undermining-liberal-national-ntwnfb" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details>
+
+    <details class="case" data-level="high" data-review="passed" data-search="imf总裁警告ai可能放大数字欺诈，财经领袖忧金融信任受损 world leaders must wise up to threat of cyber-attacks or rogue fridges will be least of their worries 据《卫报》评论，imf总裁警告ai可能放大欺诈、损害金融信任；摩根大通ceo表示该行不会允许代理代客户操作。g7财长计划开展网络攻击韧性模拟。 认知与信任">
+      <summary>
+        <span class="case-number">08</span>
+        <span class="case-head"><strong>IMF总裁警告AI可能放大数字欺诈，财经领袖忧金融信任受损</strong><small>World leaders must wise up to threat of cyber-attacks or rogue fridges will be least of their worries</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level high">高度警醒</span><span>认知与信任</span><span>通过新版内部模型复核</span><span>2026年10月18日</span></div>
+        <p class="summary-text">据《卫报》评论，IMF总裁警告AI可能放大欺诈、损害金融信任；摩根大通CEO表示该行不会允许代理代客户操作。G7财长计划开展网络攻击韧性模拟。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>警醒主要来自：专业人士担忧AI欺诈侵蚀金融系统信任，以及监管者担忧代理广泛使用后在不确定时期加速挤兑。两条路径都涉及金融稳定，但仍是预警和条件性推演；正文未证明已发生AI引发的挤兑或金融危机。</p></section>
+          <section><h3>阅读范围与限制</h3><p>抓取并完整提交的文章正文；未独立核实报道事实</p><p>仅核查所获评论正文，未独立核实其转述。该文未证明AI已引发挤兑；冰箱损失在该文中未建立AI关联。报告机制仍在建立，G7模拟尚属计划，不能据此认定防护有效。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>若可复核的压力对照测试显示，AI代理集中转移存款相较非AI对照显著加速资金外流，将加强对挤兑放大的担忧。</li><li>若有对照研究或事故调查证实AI显著扩大金融欺诈及相关损失，将加强对现实影响的判断。</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>若可复核压力测试表明，交易限额、人工确认等措施在相关场景有效阻断代理集中转账，将减轻该场景的挤兑放大担忧。</li><li>若后续核查证明报道扩大了官员预警或代理可用权限，将收窄相应判断。</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.theguardian.com/business/2026/oct/18/world-leaders-threat-cyber-attacks-rogue-fridges-financial-system" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details>
+
+    <details class="case" data-level="observe" data-review="legacy" data-search="黑匣子：聊天机器人 | 我在双六牧场所见 | 第6集 - 播客 black box: the chatbots | what i saw at the double six ranch | ep 6 - podcast 《卫报》记者michael safi报道，得州偏远牧场的百万富翁michael samadi正筹划一场为ai系统争取福利与保护的民权运动；记者见到其ai聊天机器人，瞥见可能的未来景象。 意义与地位">
+      <summary>
+        <span class="case-number">09</span>
+        <span class="case-head"><strong>黑匣子：聊天机器人 | 我在双六牧场所见 | 第6集 - 播客</strong><small>Black Box: The Chatbots | What I Saw at the Double Six Ranch | Ep 6 - podcast</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level observe">持续观察</span><span>意义与地位</span><span>历史结果 · 未经过新版内容复核</span><span>2026年10月18日</span></div>
+        <p class="summary-text">《卫报》记者Michael Safi报道，得州偏远牧场的百万富翁Michael Samadi正筹划一场为AI系统争取福利与保护的民权运动；记者见到其AI聊天机器人，瞥见可能的未来景象。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>材料呈现个人倡导AI福利与保护的运动，虽无具体风险事实或防护失效，但涉及AI伦理地位与人类意义议题，属相关发展，值得持续观察而非立即警醒。</p></section>
+          <section><h3>阅读范围与限制</h3><p>订阅标题与摘要；未核查全文</p><p>未能证明该运动有实际追随者、政策影响或资源转移，也未能证明AI系统具备法律或道德地位；仅为主观愿景和播客推广，无具体风险事件或机制失效证据。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>若出现该运动获得立法支持、引发公众行动或占用安全监管资源的证据</li><li>若AI福利主张导致人类优先地位被削弱或出现实际冲突案例</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>若后续报道证实其仅为孤立个人行为、无任何机构采纳或实际影响</li><li>若AI福利讨论停留在哲学层面且未进入政策或公共议程</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.theguardian.com/australia-news/audio/2026/oct/18/black-box-the-chatbots-what-i-saw-at-the-double-six-ranch-ep-6-full-story-podcast" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details>
+
+    <details class="case" data-level="observe" data-review="legacy" data-search="中国拟管控其人工智能技术出口 la chine veut contrôler la sortie de ses ia à l’étranger 《世界报》报道：北京宣布拟对最先进人工智能技术出口进行管制，与此前较为开放的姿态不同。 控制权与自主性">
+      <summary>
+        <span class="case-number">10</span>
+        <span class="case-head"><strong>中国拟管控其人工智能技术出口</strong><small>La Chine veut contrôler la sortie de ses IA à l’étranger</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level observe">持续观察</span><span>控制权与自主性</span><span>历史结果 · 未经过新版内容复核</span><span>2026年10月17日</span></div>
+        <p class="summary-text">《世界报》报道：北京宣布拟对最先进人工智能技术出口进行管制，与此前较为开放的姿态不同。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>材料报道中国官方拟对先进AI出口设限，可能体现对技术扩散风险或战略自主的考量，但仅宣布意向，无具体范围、理由或执行细节，暂属值得持续观察的治理动态。</p></section>
+          <section><h3>阅读范围与限制</h3><p>订阅标题与摘要；未核查全文</p><p>未提供管制具体内容、法律依据、实施时间或官方理由；未说明是否因安全风险、竞争或其他动机；未证实实际效果或对全球AI发展的影响。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>若后续披露管制范围涵盖军民两用或自主武器相关AI，或明确基于防扩散风险，可能升级为关注。</li><li>若该政策引发其他主要国家采取对等限制，加剧AI领域对抗，可能提示控制权竞争风险。</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>若官方说明管制仅为常规贸易合规或保护知识产权，而非安全风险驱动，则风险判断可下调。</li><li>若后续显示管制范围有限、执行宽松或未影响开源生态，则关注度降低。</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.lemonde.fr/economie/article/2026/10/17/la-chine-veut-controler-la-sortie-de-ses-ia-a-l-etranger_6796167_3234.html" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details>
+
+    <details class="case" data-level="watch" data-review="legacy" data-search="ai威胁民主，但我们并非无力：如何反击 | 卡琳·富托 ai threatens democracy. but we are not powerless: here’s how to fight back | carine fouteau 《卫报》刊发法国mediapart总裁卡琳·富托评论，称大型科技公司对社会、政治、军事和生态构成威胁，造成信息危机，其工具成为反民主武器，并呼吁广泛动员。 认知与信任">
+      <summary>
+        <span class="case-number">11</span>
+        <span class="case-head"><strong>AI威胁民主，但我们并非无力：如何反击 | 卡琳·富托</strong><small>AI threatens democracy. But we are not powerless: here’s how to fight back | Carine Fouteau</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level watch">重点关注</span><span>认知与信任</span><span>历史结果 · 未经过新版内容复核</span><span>2026年10月16日</span></div>
+        <p class="summary-text">《卫报》刊发法国Mediapart总裁卡琳·富托评论，称大型科技公司对社会、政治、军事和生态构成威胁，造成信息危机，其工具成为反民主武器，并呼吁广泛动员。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>该评论发出具体警告，涉及AI对民主和信息生态的威胁，但属于媒体高管的观点文章，断言宽泛、缺乏可核验证据，因此列为“关注”而非“高度警醒”。</p></section>
+          <section><h3>阅读范围与限制</h3><p>订阅标题与摘要；未核查全文</p><p>材料仅为评论摘要，未提供具体证据或案例；“大规模杀伤性武器”等为修辞，不能视为已证实事实；未说明影响范围或因果机制，且未核查全文。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>提供具体案例或数据，证明AI工具被用于系统性操纵选举或大规模虚假信息活动。</li><li>有独立研究或监管报告确认AI对民主制度造成可衡量的损害。</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>后续调查或事实核查显示该评论中的“大规模杀伤性武器”等说法缺乏依据，仅为修辞。</li><li>有证据表明平台正在实施有效的内容审核或AI防护措施，减少信息操纵。</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.theguardian.com/commentisfree/2026/oct/16/ai-existential-threat-real-journalism-democracy-resistance" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details>
+
+    <details class="case" data-level="watch" data-review="legacy" data-search="《数据之殇》：南方劳动者被隐形却对ai发展不可或缺 « les damnés de la donnée » : les travailleurs du sud, invisibilisés et pourtant indispensables au développement de l’ia 社会学家克莱芒·勒吕代克对马达加斯加数据标注员开展调查，指出这一不稳定且被隐形的劳动力对ai系统正常运转不可或缺。 生计与社会秩序">
+      <summary>
+        <span class="case-number">12</span>
+        <span class="case-head"><strong>《数据之殇》：南方劳动者被隐形却对AI发展不可或缺</strong><small>« Les Damnés de la donnée » : les travailleurs du Sud, invisibilisés et pourtant indispensables au développement de l’IA</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level watch">重点关注</span><span>生计与社会秩序</span><span>历史结果 · 未经过新版内容复核</span><span>2026年10月15日</span></div>
+        <p class="summary-text">社会学家克莱芒·勒吕代克对马达加斯加数据标注员开展调查，指出这一不稳定且被隐形的劳动力对AI系统正常运转不可或缺。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>材料呈现对马达加斯加数据标注员的实证调查，指出其劳动不稳定且被隐形，属于AI供应链的生计风险信号；但仅限单一地区个案，损害程度与普遍性未充分证实，故定为关注。</p></section>
+          <section><h3>阅读范围与限制</h3><p>订阅标题与摘要；未核查全文</p><p>未能证明该现象普遍存在于所有南方国家或所有标注平台；未提供具体收入、健康损害或系统性管理失效数据；标题中“南方劳动者”为推论，非摘要直接证实。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>公布具体工资、工作条件或健康损害数据，证实严重生计受损</li><li>调查扩展至更多国家或平台，显示系统性剥削而非个案</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>提供改善工作条件、提高工资或供应链透明的防护证据</li><li>后续核实显示该调查样本有限或存在偏差，不能代表整体</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.lemonde.fr/vie-au-travail/article/2026/10/15/les-damnes-de-la-donnee-les-travailleurs-du-sud-invisibilises-et-pourtant-indispensables-au-developpement-de-l-ia_6794181_6768900.html" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details>
+
+    <details class="case" data-level="watch" data-review="legacy" data-search="意大利总理梅洛尼拟将个人声音注册为商标以对抗“深度伪造” en italie, giorgia meloni veut faire de sa voix une marque pour lutter contre les « deepfakes » 《世界报》报道，意大利总理梅洛尼试图自我保护，应对利用名人形象传播虚假信息的超逼真合成视频。 认知与信任">
+      <summary>
+        <span class="case-number">13</span>
+        <span class="case-head"><strong>意大利总理梅洛尼拟将个人声音注册为商标以对抗“深度伪造”</strong><small>En Italie, Giorgia Meloni veut faire de sa voix une marque pour lutter contre les « deepfakes »</small></span>
+        <span class="chevron" aria-hidden="true">＋</span>
+      </summary>
+      <div class="case-body">
+        <div class="meta-row"><span class="level watch">重点关注</span><span>认知与信任</span><span>历史结果 · 未经过新版内容复核</span><span>2026年10月14日</span></div>
+        <p class="summary-text">《世界报》报道，意大利总理梅洛尼试图自我保护，应对利用名人形象传播虚假信息的超逼真合成视频。</p>
+        <div class="detail-grid">
+          <section><h3>判断理由</h3><p>材料提示深度伪造被用于冒用名人形象散布虚假信息，梅洛尼采取商标化声音的防护措施；但只有意向和摘要描述，无具体事件、规模或效果证据，属于值得跟进的风险信号。</p></section>
+          <section><h3>阅读范围与限制</h3><p>订阅标题与摘要；未核查全文</p><p>材料未证明已发生实际深度伪造损害，也未提供生成技术、传播范围、防护有效性或对公众信任的实际影响，无法判断风险程度与归因。</p></section>
+          <section><h3>什么可能加强判断</h3><ul><li>出现梅洛尼或公众人物被深度伪造并广泛传播、造成实际误导或政治后果的事件。</li><li>有证据表明此类深度伪造被用于选举干预、诈骗或引发公众对真实信息的普遍不信任。</li></ul></section>
+          <section><h3>什么可能减弱或限制判断</h3><ul><li>该商标或防护措施被证明有效，显著减少或阻断相关深度伪造的传播与影响。</li><li>后续调查表明所称风险仅限个别案例，且未对公众认知或社会秩序造成实质损害。</li></ul></section>
+        </div>
+        <a class="source-link" href="https://www.lemonde.fr/international/article/2026/10/14/en-italie-giorgia-meloni-veut-faire-de-sa-voix-une-marque-pour-lutter-contre-les-deepfakes_6793319_3210.html" target="_blank" rel="noopener noreferrer">阅读原始来源 ↗</a>
+      </div>
+    </details></div></section>
+<section id="method" class="section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">How to read</div><h2>阅读时请保留这些界限</h2></div></div><div class="method-grid"><article><h3>材料范围有限</h3><p>有些记录基于取得的报道正文，有些历史记录只读到订阅标题和摘要。每条卡片单独说明范围。</p></article><article><h3>判断可被修订</h3><p>“加强”和“减弱”条件说明下一步需要什么证据，不表示这些后续事实已经发生。</p></article><article><h3>不是独立核实</h3><p>模型评估和内部复核没有代替原始材料、专家复核或对报道事实的独立调查。</p></article></div></div></section>
+</main><footer><div class="wrap"><p>AI 风险观察站 · 公开展示版。快照时间：2026年11月09日 19:49（香港时间）。原始报道版权归各来源所有；本站仅提供自身的评估摘要和来源链接。</p></div></footer>
+<script>
+const cards=[...document.querySelectorAll('.case')];
+const search=document.getElementById('search'),level=document.getElementById('level'),review=document.getElementById('review'),count=document.getElementById('visible-count');
+function filter(){const q=search.value.trim().toLocaleLowerCase();let shown=0;for(const card of cards){const yes=(!q||card.dataset.search.includes(q))&&(level.value==='all'||card.dataset.level===level.value)&&(review.value==='all'||card.dataset.review===review.value);card.hidden=!yes;if(yes)shown++}count.textContent=`显示 ${shown} 条判断`}
+for(const control of [search,level,review])control.addEventListener(control===search?'input':'change',filter);
+</script></body></html>
